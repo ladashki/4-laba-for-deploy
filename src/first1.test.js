@@ -1,10 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import  fetchQuote from './App';
+import Adapter from 'enzyme-adapter-react-16';
+import { shallow, configure } from 'enzyme';
+import App from './App';
+
+configure({ adapter: new Adapter() });
 
 
-it('renders without crashing', () => {
-
-    expect(fetchQuote).toEqual({ quote: null });
+describe('indirectly testing click simulation', () => {
+  it('should ', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.state('quote')).toBe(null);
+  });
 });

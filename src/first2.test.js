@@ -1,6 +1,19 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { create } from 'react-test-renderer';
 import App from './App';
-it('renders without crashing', () => {
-  shallow(<App />);
+
+const testData = {
+  data: {
+"quote":"Tweeting is legal and also therapeutic"
+           },
+};
+
+describe('Snapshot test', () => {
+  test('Matches the snapshot', () => {
+  
+    const AppInfo = create(<App AppData={testData.data.runs} isLoading={false} />);
+    expect(AppInfo.toJSON()).toMatchSnapshot();
+  });
 });
+
+
